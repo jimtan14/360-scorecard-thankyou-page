@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank you — 360 AEO Strategy Scorecard | AirOps</title>
+<style>
+  :root {
+    --white: #ffffff;
+    --off-white: #F8FFFA;
+    --near-black: #000d05;
+    --green-100: #dfeae3;
+    --green-200: #CCFFE0;
+    --green-500: #008c44;
+    --green-600: #002910;
+    --interaction: #00ff64;
+    --accent-label: #EEFF8C;
+    --text-primary: #09090b;
+    --text-secondary: #676c79;
+    --stroke-green: #d4e8da;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Saans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--text-primary);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 48px;
+    background: var(--white);
+    border-bottom: 1px solid var(--green-100);
+  }
+
+  .logo svg { height: 24px; width: auto; display: block; }
+
+  .header-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--interaction);
+    color: var(--near-black);
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 0 20px rgba(0, 255, 100, 0.4);
+    transition: transform 0.15s ease;
+  }
+  .header-cta:hover { transform: translateY(-1px); }
+
+  /* ===== HERO (gradient background matching scorecard page) ===== */
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(ellipse at 100% 50%, rgba(0, 255, 100, 0.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 0% 100%, rgba(204, 255, 224, 0.4) 0%, transparent 50%),
+      linear-gradient(180deg, #f7f4ec 0%, #f4f1e8 100%);
+    padding: 96px 48px 128px;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-left { max-width: 560px; }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--green-600);
+    color: var(--white);
+    border-radius: 999px;
+    font-family: 'Saans Mono', 'DM Mono', 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .pill::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--interaction);
+    border-radius: 50%;
+  }
+
+  h1 {
+    font-family: 'Serrif VF', Georgia, 'Times New Roman', serif;
+    font-size: 64px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--near-black);
+    margin-bottom: 32px;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 28px 0;
+    border-top: 1px solid rgba(0, 13, 5, 0.12);
+    border-bottom: 1px solid rgba(0, 13, 5, 0.12);
+    margin-bottom: 32px;
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .timeline-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--near-black);
+    color: var(--interaction);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Saans Mono', 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .timeline-text { font-size: 15px; line-height: 1.5; padding-top: 3px; }
+  .timeline-text strong { font-weight: 600; }
+
+  /* Right side card */
+  .hero-right { display: flex; justify-content: center; }
+
+  .confirmation-card {
+    background: var(--green-600);
+    color: var(--white);
+    padding: 48px 40px;
+    border-radius: 24px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 41, 16, 0.25);
+  }
+
+  .check-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--interaction);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .check-icon svg { width: 32px; height: 32px; }
+
+  .confirmation-card h2 {
+    font-family: 'Serrif VF', Georgia, serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+
+  .confirmation-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 24px;
+  }
+
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 13px;
+  }
+  .detail-row:last-child { border-bottom: none; }
+
+  .detail-label {
+    font-family: 'Saans Mono', 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 11px;
+  }
+
+  .detail-value {
+    font-weight: 500;
+    color: var(--white);
+    font-size: 14px;
+  }
+  .detail-value.accent { color: var(--interaction); }
+
+  /* ===== WHILE YOU WAIT SECTION ===== */
+  .wait-section {
+    background: var(--white);
+    padding: 96px 48px;
+  }
+
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Saans Mono', 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-500);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Serrif VF', Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--near-black);
+    margin-bottom: 64px;
+    max-width: 700px;
+  }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .resource-card {
+    background: var(--white);
+    border: 1px solid var(--stroke-green);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--near-black);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+    min-height: 280px;
+  }
+  .resource-card:hover {
+    border-color: var(--green-500);
+    transform: translateY(-2px);
+  }
+
+  .resource-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--accent-label);
+    color: var(--near-black);
+    font-family: 'Saans Mono', 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    align-self: flex-start;
+  }
+
+  .resource-card h3 {
+    font-family: 'Serrif VF', Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .resource-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: auto;
+    padding-bottom: 24px;
+  }
+
+  .resource-link {
+    font-family: 'Saans Mono', 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--green-500);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .resource-link::after {
+    content: '→';
+    font-family: 'Saans', sans-serif;
+    transition: transform 0.2s ease;
+  }
+  .resource-card:hover .resource-link::after { transform: translateX(4px); }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--near-black);
+    color: var(--white);
+    padding: 64px 48px 40px;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .footer-left { display: flex; flex-direction: column; gap: 12px; }
+  .footer-logo svg { height: 22px; }
+  .footer-tag {
+    font-family: 'Saans Mono', 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .footer-right { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .header { padding: 20px 24px; }
+    .hero { padding: 64px 24px 80px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+    h1 { font-size: 44px; }
+    .wait-section { padding: 64px 24px; }
+    .section-title { font-size: 36px; }
+    .resource-grid { grid-template-columns: 1fr; }
+    .confirmation-card { padding: 36px 28px; }
+    .footer { padding: 48px 24px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">
+    <svg width="120" viewBox="0 0 784 252" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M111.828 65.6415V88.4663C101.564 72.0112 85.627 61.9258 65.9084 61.9258C23.7703 61.9258 0 92.9782 0 134.647C0 176.581 24.0404 208.695 66.4487 208.695C86.1672 208.695 101.834 198.609 111.828 182.154V204.979H144.782V65.6415H111.828ZM72.9315 181.093C48.8911 181.093 35.1152 159.064 35.1152 134.647C35.1152 110.76 48.621 89.7933 73.4717 89.7933C94.0006 89.7933 111.558 104.391 111.558 134.116C111.558 163.31 94.8109 181.093 72.9315 181.093Z" fill="#001408"/>
+      <path d="M173.137 65.6494V204.987H208.252V65.6494H173.137Z" fill="#001408"/>
+      <path d="M272.998 100.141V65.6386H237.883V204.976H272.998V125.355C272.998 104.919 287.314 96.691 300.82 96.691C308.653 96.691 316.757 98.8143 321.079 100.407V63.25C298.119 63.25 279.211 76.7856 272.998 100.141Z" fill="#001408"/>
+      <path d="M329.629 108.115C329.629 151.377 359.882 182.163 403.371 182.163C447.13 182.163 477.115 151.377 477.115 108.115C477.115 65.6507 447.13 35.3945 403.371 35.3945C359.882 35.3945 329.629 65.6507 329.629 108.115ZM441.997 108.115C441.997 135.187 427.141 154.561 403.371 154.561C379.33 154.561 364.744 135.187 364.744 108.115C364.744 82.1058 379.33 63.2621 403.371 63.2621C427.141 63.2621 441.997 82.1058 441.997 108.115Z" fill="#001408"/>
+      <path d="M575.086 61.9258C554.557 61.9258 537.81 73.869 528.896 92.9782V65.6415H493.781V251.425H528.896V180.031C538.891 197.282 557.529 208.695 577.247 208.695C615.604 208.695 642.345 179.235 642.345 137.035C642.345 92.7128 614.523 61.9258 575.086 61.9258ZM568.874 182.685C545.374 182.685 528.896 163.31 528.896 135.708C528.896 107.31 545.374 87.4047 568.874 87.4047C591.293 87.4047 607.23 107.841 607.23 136.77C607.23 163.841 591.293 182.685 568.874 182.685Z" fill="#001408"/>
+      <path d="M653.555 156.675C653.555 181.889 676.244 208.695 721.624 208.695C767.274 208.695 783.751 182.42 783.751 161.983C783.751 130.666 746.205 125.092 721.084 120.315C704.066 117.395 693.262 115.007 693.262 105.452C693.262 94.5706 705.417 87.6701 718.383 87.6701C735.94 87.6701 742.693 99.6133 743.233 112.353H778.349C778.349 91.6511 763.492 61.9258 717.572 61.9258C677.865 61.9258 658.147 83.9544 658.147 107.575C658.147 141.282 696.233 144.732 721.354 149.509C735.94 152.163 748.636 155.348 748.636 165.699C748.636 176.05 736.21 182.95 722.975 182.95C710.549 182.95 688.67 176.05 688.67 156.675H653.555Z" fill="#001408"/>
+      <path d="M191.339 48.6576C176.921 48.6576 166.578 38.4949 166.578 24.6368C166.578 10.7786 176.921 0 191.339 0C205.13 0 216.1 10.7786 216.1 24.6368C216.1 38.4949 205.13 48.6576 191.339 48.6576Z" fill="#001408"/>
+    </svg>
+  </div>
+  <a href="/" class="header-cta">Back to home →</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <span class="pill">Request received</span>
+      <h1>Your scorecard is on the way.</h1>
+      <p class="hero-sub">We're building your custom 360 AEO Strategy Scorecard right now. Check your inbox in the next 40 minutes.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-num">1</div>
+          <div class="timeline-text">Our team runs your brand through <strong>10,000+ prompts</strong> across ChatGPT, Gemini, Perplexity, and Google AI Mode.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-num">2</div>
+          <div class="timeline-text">We benchmark your <strong>mention rate, citation rate, and share of voice</strong> against your top competitors.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-num">3</div>
+          <div class="timeline-text">You'll get your scorecard with <strong>specific recommendations</strong> on where to invest first.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="confirmation-card">
+        <div class="check-icon">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 16L13.5 21.5L24 11" stroke="#000d05" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2>You're on the list.</h2>
+        <p>Your custom scorecard is being prepared. Watch your inbox for next steps.</p>
+
+        <div class="detail-row">
+          <span class="detail-label">Status</span>
+          <span class="detail-value accent">● In progress</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Delivery</span>
+          <span class="detail-value">Within 40 minutes</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Format</span>
+          <span class="detail-value">Scorecard URL</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Cost</span>
+          <span class="detail-value">Free</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHILE YOU WAIT -->
+<section class="wait-section">
+  <div class="section-inner">
+    <div class="section-label">While you wait</div>
+    <h2 class="section-title">Three things to read before your scorecard lands.</h2>
+
+    <div class="resource-grid">
+      <a href="/aeo" class="resource-card">
+        <span class="resource-tag">Guide</span>
+        <h3>What is AEO?</h3>
+        <p>The definitive guide to Answer Engine Optimization. How AI search works, what gets cited, and where to focus first.</p>
+        <span class="resource-link">Read the guide</span>
+      </a>
+
+      <a href="/blog/aeo-research" class="resource-card">
+        <span class="resource-tag">Research</span>
+        <h3>How ChatGPT picks citations</h3>
+        <p>We analyzed 10,000+ ChatGPT responses. Here's what actually drives citation: retrieval rank, heading match, and domain authority.</p>
+        <span class="resource-link">See the research</span>
+      </a>
+
+      <a href="/aeo/checker" class="resource-card">
+        <span class="resource-tag">Free tool</span>
+        <h3>AEO readiness checker</h3>
+        <p>Run a quick check on any URL. See how your page is structured for AI retrieval and what's missing.</p>
+        <span class="resource-link">Try the checker</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-logo">
+        <svg width="100" viewBox="0 0 784 252" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M111.828 65.6415V88.4663C101.564 72.0112 85.627 61.9258 65.9084 61.9258C23.7703 61.9258 0 92.9782 0 134.647C0 176.581 24.0404 208.695 66.4487 208.695C86.1672 208.695 101.834 198.609 111.828 182.154V204.979H144.782V65.6415H111.828ZM72.9315 181.093C48.8911 181.093 35.1152 159.064 35.1152 134.647C35.1152 110.76 48.621 89.7933 73.4717 89.7933C94.0006 89.7933 111.558 104.391 111.558 134.116C111.558 163.31 94.8109 181.093 72.9315 181.093Z" fill="#ffffff"/>
+          <path d="M173.137 65.6494V204.987H208.252V65.6494H173.137Z" fill="#ffffff"/>
+          <path d="M272.998 100.141V65.6386H237.883V204.976H272.998V125.355C272.998 104.919 287.314 96.691 300.82 96.691C308.653 96.691 316.757 98.8143 321.079 100.407V63.25C298.119 63.25 279.211 76.7856 272.998 100.141Z" fill="#ffffff"/>
+          <path d="M329.629 108.115C329.629 151.377 359.882 182.163 403.371 182.163C447.13 182.163 477.115 151.377 477.115 108.115C477.115 65.6507 447.13 35.3945 403.371 35.3945C359.882 35.3945 329.629 65.6507 329.629 108.115ZM441.997 108.115C441.997 135.187 427.141 154.561 403.371 154.561C379.33 154.561 364.744 135.187 364.744 108.115C364.744 82.1058 379.33 63.2621 403.371 63.2621C427.141 63.2621 441.997 82.1058 441.997 108.115Z" fill="#ffffff"/>
+          <path d="M575.086 61.9258C554.557 61.9258 537.81 73.869 528.896 92.9782V65.6415H493.781V251.425H528.896V180.031C538.891 197.282 557.529 208.695 577.247 208.695C615.604 208.695 642.345 179.235 642.345 137.035C642.345 92.7128 614.523 61.9258 575.086 61.9258ZM568.874 182.685C545.374 182.685 528.896 163.31 528.896 135.708C528.896 107.31 545.374 87.4047 568.874 87.4047C591.293 87.4047 607.23 107.841 607.23 136.77C607.23 163.841 591.293 182.685 568.874 182.685Z" fill="#ffffff"/>
+          <path d="M653.555 156.675C653.555 181.889 676.244 208.695 721.624 208.695C767.274 208.695 783.751 182.42 783.751 161.983C783.751 130.666 746.205 125.092 721.084 120.315C704.066 117.395 693.262 115.007 693.262 105.452C693.262 94.5706 705.417 87.6701 718.383 87.6701C735.94 87.6701 742.693 99.6133 743.233 112.353H778.349C778.349 91.6511 763.492 61.9258 717.572 61.9258C677.865 61.9258 658.147 83.9544 658.147 107.575C658.147 141.282 696.233 144.732 721.354 149.509C735.94 152.163 748.636 155.348 748.636 165.699C748.636 176.05 736.21 182.95 722.975 182.95C710.549 182.95 688.67 176.05 688.67 156.675H653.555Z" fill="#ffffff"/>
+          <path d="M191.339 48.6576C176.921 48.6576 166.578 38.4949 166.578 24.6368C166.578 10.7786 176.921 0 191.339 0C205.13 0 216.1 10.7786 216.1 24.6368C216.1 38.4949 205.13 48.6576 191.339 48.6576Z" fill="#ffffff"/>
+        </svg>
+      </div>
+      <div class="footer-tag">The AEO platform for modern brands</div>
+    </div>
+    <div class="footer-right">© 2026 AirOps</div>
+  </div>
+</footer>
+
+</body>
+</html>
