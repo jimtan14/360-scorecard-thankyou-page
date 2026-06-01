@@ -374,52 +374,122 @@
   .resource-card:hover .resource-link::after { transform: translateX(4px); }
 
   /* ===== FOOTER ===== */
-  .footer {
-    background: #000;
-    color: #C5EDD5;
-    padding: 56px 48px 0;
-    position: relative;
-    overflow: hidden;
+  .site-footer {
+    background: #000000;
+    color: #EEF9F3;
+    padding: 72px 48px 40px;
   }
-  .footer-top {
-    max-width: 1200px;
+  .site-footer-inner {
+    max-width: 1344px;
     margin: 0 auto;
+  }
+  .site-footer a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .site-footer-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 32px;
+    padding-bottom: 56px;
+  }
+  .site-footer-feature-links {
+    display: flex;
     flex-wrap: wrap;
-    gap: 24px;
-    padding-bottom: 24px;
+    gap: 36px;
   }
-  .footer-tag {
-    font-family: 'Saans Mono', 'DM Mono', monospace;
-    font-size: 14px;
-    color: #c0ffd2;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+  .site-footer-feature-links a {
+    color: #DDEEDD;
+    font-size: 22px;
+    font-weight: 500;
+    transition: opacity 0.15s ease;
   }
-  .footer-copy {
-    font-family: 'Saans Mono', 'DM Mono', monospace;
-    font-size: 13px;
-    color: rgba(248, 255, 250, 0.55);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+  .site-footer-feature-links a:hover,
+  .site-footer-menu a:hover,
+  .site-footer-legal a:hover,
+  .site-footer-social a:hover { opacity: 0.7; }
+  .site-footer-demo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    padding: 0 30px;
+    border-radius: 999px;
+    background: var(--interaction);
+    color: var(--near-black);
+    font-size: 16px;
+    font-weight: 700;
+    transition: background 0.16s ease;
   }
-  .footer-wordmark {
+  .site-footer a.site-footer-demo { color: var(--near-black); }
+  .site-footer-demo:hover { background: #00cc50; }
+  .site-footer-menu {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 28px;
+    padding-bottom: 52px;
+  }
+  .site-footer-group h3 {
+    margin-bottom: 18px;
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .site-footer-group a {
+    display: block;
+    margin-top: 11px;
+    color: #DDEEDD;
+    font-size: 15px;
+    line-height: 1.35;
+    opacity: 0.88;
+    transition: opacity 0.15s ease;
+  }
+  .site-footer-social-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding-bottom: 48px;
+  }
+  .site-footer-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(238, 249, 243, 0.28);
+    border-radius: 999px;
+    color: #EEF9F3;
+    font-size: 12px;
+    font-weight: 700;
+    transition: opacity 0.15s ease, border-color 0.15s ease;
+  }
+  .site-footer-social svg {
+    width: 19px;
+    height: 19px;
+    display: block;
+    fill: currentColor;
+  }
+  .site-footer-wordmark {
     display: block;
     width: 100%;
     aspect-ratio: 784 / 252;
-    margin: 0;
-    user-select: none;
-    background-color: #FFFFFF;
-    -webkit-mask-image: url('assets/airops-wordmark.svg');
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    -webkit-mask-size: contain;
-    mask-image: url('assets/airops-wordmark.svg');
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: contain;
+    background: #EEF9F3;
+    -webkit-mask: url('assets/airops-wordmark.svg') center / contain no-repeat;
+    mask: url('assets/airops-wordmark.svg') center / contain no-repeat;
+  }
+  .site-footer-legal {
+    display: flex;
+    justify-content: flex-end;
+    gap: 36px;
+    padding-top: 32px;
+    color: var(--interaction);
+    font-family: 'Saans Mono', 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   /* ===== RESPONSIVE ===== */
@@ -432,7 +502,14 @@
     .section-title { font-size: 36px; }
     .resource-grid { grid-template-columns: 1fr; }
     .confirmation-card { padding: 36px 28px; }
-    .footer { padding: 48px 24px 32px; }
+    .site-footer { padding: 52px 20px 36px; }
+    .site-footer-top { align-items: flex-start; flex-direction: column; }
+    .site-footer-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .site-footer-legal { justify-content: flex-start; gap: 28px; flex-wrap: wrap; }
+  }
+
+  @media (max-width: 560px) {
+    .site-footer-menu { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -465,7 +542,7 @@
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-num">1</div>
-          <div class="timeline-text">Our team runs your brand through <strong>10,000+ prompts</strong> across ChatGPT, Gemini, Perplexity, and Google AI Mode.</div>
+          <div class="timeline-text">Our team runs your brand through <strong>10,000+ prompts</strong> across ChatGPT, Gemini, Perplexity, and Google AI Overviews.</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-num">2</div>
@@ -541,12 +618,96 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-top">
-    <div class="footer-tag">The growth platform for AI search.</div>
-    <div class="footer-copy">© 2026 AirOps</div>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-top">
+      <nav class="site-footer-feature-links" aria-label="Featured AirOps links">
+        <a href="https://www.airops.com/platform">Platform</a>
+        <a href="https://jobs.ashbyhq.com/airops" target="_blank" rel="noopener">Careers</a>
+        <a href="https://www.airops.com/blog">Resources</a>
+      </nav>
+      <a href="https://www.airops.com/book-a-call" class="site-footer-demo" target="_blank" rel="noopener">Book a Demo</a>
+    </div>
+
+    <nav class="site-footer-menu" aria-label="AirOps footer">
+      <div class="site-footer-group">
+        <h3>Product</h3>
+        <a href="https://www.airops.com/platform">Platform</a>
+        <a href="https://www.airops.com/platform/quill">Quill</a>
+        <a href="https://www.airops.com/insights">Insights</a>
+        <a href="https://www.airops.com/action">Action</a>
+        <a href="https://www.airops.com/platform/grid">Grids</a>
+        <a href="https://www.airops.com/platform/workflows">Workflows</a>
+        <a href="https://www.airops.com/platform/brand-kit">Brand Kit</a>
+      </div>
+      <div class="site-footer-group">
+        <h3>Solutions</h3>
+        <a href="https://www.airops.com/solution/seo-content-teams">Content &amp; SEO Teams</a>
+        <a href="https://www.airops.com/solution/marketing-agency">Marketing Agencies</a>
+        <a href="https://www.airops.com/solution/content-refresh">Content Refresh</a>
+        <a href="https://www.airops.com/solution/offsite">Offsite</a>
+      </div>
+      <div class="site-footer-group">
+        <h3>General</h3>
+        <a href="https://www.airops.com/pricing">Pricing</a>
+        <a href="https://jobs.ashbyhq.com/airops" target="_blank" rel="noopener">Careers</a>
+        <a href="https://docs.airops.com/" target="_blank" rel="noopener">Documentation</a>
+        <a href="https://airops.getrewardful.com/signup" target="_blank" rel="noopener">Affiliate</a>
+      </div>
+      <div class="site-footer-group">
+        <h3>Resources</h3>
+        <a href="https://university.airops.com/">University</a>
+        <a href="https://www.airops.com/blog">Blog</a>
+        <a href="https://www.airops.com/report">AirOps Research</a>
+        <a href="https://www.airops.com/airops-answers">AirOps Answers</a>
+        <a href="https://www.airops.com/lp/search-playbook-marketers">AirOps AI Search Playbook</a>
+        <a href="https://www.airops.com/answer-engine-visibility">AEO Analysis</a>
+        <a href="https://www.airops.com/ai-search-hub">AI Search Hub</a>
+      </div>
+      <div class="site-footer-group">
+        <h3>Compare</h3>
+        <a href="https://www.airops.com/compare/airops-vs-claude">AirOps vs Claude</a>
+        <a href="https://www.airops.com/compare/airops-vs-chatgpt">AirOps vs ChatGPT</a>
+        <a href="https://www.airops.com/compare/airops-vs-profound">AirOps vs Profound</a>
+        <a href="https://www.airops.com/compare/airops-vs-scrunch">AirOps vs Scrunch</a>
+        <a href="https://www.airops.com/compare/airops-vs-conductor">AirOps vs Conductor</a>
+        <a href="https://www.airops.com/compare/airops-vs-semrush">AirOps vs Semrush</a>
+        <a href="https://www.airops.com/compare/airops-vs-ahrefs">AirOps vs Ahrefs</a>
+      </div>
+      <div class="site-footer-group">
+        <h3>Support</h3>
+        <a href="mailto:info@airops.com">Talk to Us</a>
+        <a href="https://join.slack.com/t/airopsbuilders/shared_invite/zt-3q5jzxzhy-96c_NHF2eXi5kCKYrGQIxw" target="_blank" rel="noopener">Community</a>
+        <a href="https://www.airops.com/job-board">AirOps Job Board</a>
+        <a href="https://www.airops.com/airops-experts">Experts</a>
+      </div>
+    </nav>
+
+    <div class="site-footer-social-list" aria-label="AirOps social links">
+      <a class="site-footer-social" href="https://www.linkedin.com/company/airopshq/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 26 26" aria-hidden="true" focusable="false"><path d="M23.705 0H1.89C0.845 0 0 0.825 0 1.845V23.75C0 24.77 0.845 25.6 1.89 25.6H23.705C24.75 25.6 25.6 24.77 25.6 23.755V1.845C25.6 0.825 24.75 0 23.705 0ZM7.595 21.815H3.795V9.595H7.595V21.815ZM5.695 7.93C4.475 7.93 3.49 6.945 3.49 5.73C3.49 4.515 4.475 3.53 5.695 3.53C6.91 3.53 7.895 4.515 7.895 5.73C7.895 6.94 6.91 7.93 5.695 7.93ZM21.815 21.815H18.02V15.875C18.02 14.46 17.995 12.635 16.045 12.635C14.07 12.635 13.77 14.18 13.77 15.775V21.815H9.98V9.595H13.62V11.265H13.67C14.175 10.305 15.415 9.29 17.26 9.29C21.105 9.29 21.815 11.82 21.815 15.11V21.815Z"/></svg>
+      </a>
+      <a class="site-footer-social" href="https://x.com/AirOpsHQ" target="_blank" rel="noopener" aria-label="X">
+        <svg viewBox="0 0 26 26" aria-hidden="true" focusable="false"><path d="M19.55 2.031H23.148L15.287 11.016L24.535 23.243H17.294L11.622 15.827L5.132 23.243H1.532L9.94 13.632L1.068 2.031H8.494L13.62 8.809L19.55 2.031ZM18.287 21.089H20.281L7.41 4.071H5.27L18.287 21.089Z"/></svg>
+      </a>
+      <a class="site-footer-social" href="https://www.youtube.com/@airopshq" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 26 26" aria-hidden="true" focusable="false"><path d="M25.345 7.68C25.345 7.68 25.095 5.915 24.325 5.14C23.35 4.12 22.26 4.115 21.76 4.055C18.18 3.795 12.805 3.795 12.805 3.795H12.795C12.795 3.795 7.42 3.795 3.84 4.055C3.34 4.115 2.25 4.12 1.275 5.14C0.505 5.915 0.26 7.68 0.26 7.68C0.26 7.68 0 9.755 0 11.825V13.765C0 15.835 0.255 17.91 0.255 17.91C0.255 17.91 0.505 19.675 1.27 20.45C2.245 21.47 3.525 21.435 4.095 21.545C6.145 21.74 12.8 21.8 12.8 21.8C12.8 21.8 18.18 21.79 21.76 21.535C22.26 21.475 23.35 21.47 24.325 20.45C25.095 19.675 25.345 17.91 25.345 17.91C25.345 17.91 25.6 15.84 25.6 13.765V11.825C25.6 9.755 25.345 7.68 25.345 7.68ZM10.155 16.12V8.925L17.07 12.535L10.155 16.12Z"/></svg>
+      </a>
+      <a class="site-footer-social" href="https://www.instagram.com/airops_hq/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.001 9C10.344 9 9.001 10.343 9.001 12C9.001 13.657 10.344 15 12.001 15C13.658 15 15.001 13.657 15.001 12C15.001 10.343 13.658 9 12.001 9ZM12.001 7C14.761 7 17.001 9.237 17.001 12C17.001 14.76 14.764 17 12.001 17C9.241 17 7.001 14.763 7.001 12C7.001 9.24 9.238 7 12.001 7ZM18.501 6.749C18.501 7.439 17.94 7.999 17.251 7.999C16.561 7.999 16.001 7.438 16.001 6.749C16.001 6.06 16.562 5.5 17.251 5.5C17.939 5.499 18.501 6.06 18.501 6.749ZM12.001 4C9.527 4 9.123 4.007 7.972 4.058C7.188 4.095 6.663 4.2 6.174 4.39C5.74 4.558 5.427 4.759 5.094 5.093C4.759 5.427 4.558 5.74 4.39 6.174C4.2 6.663 4.095 7.188 4.059 7.971C4.007 9.075 4.001 9.461 4.001 12C4.001 14.475 4.008 14.878 4.059 16.029C4.096 16.812 4.201 17.339 4.39 17.826C4.559 18.261 4.761 18.574 5.092 18.906C5.429 19.242 5.742 19.443 6.172 19.609C6.666 19.801 7.191 19.906 7.972 19.942C9.076 19.994 9.462 20 12.001 20C14.475 20 14.879 19.993 16.03 19.942C16.812 19.905 17.339 19.8 17.827 19.611C18.26 19.442 18.575 19.24 18.907 18.908C19.244 18.572 19.444 18.259 19.611 17.828C19.801 17.336 19.907 16.81 19.943 16.029C19.995 14.925 20.001 14.539 20.001 12C20.001 9.526 19.994 9.122 19.943 7.971C19.906 7.189 19.8 6.661 19.611 6.173C19.443 5.74 19.242 5.426 18.908 5.093C18.573 4.757 18.262 4.557 17.827 4.389C17.338 4.2 16.812 4.094 16.03 4.058C14.926 4.006 14.54 4 12.001 4ZM12.001 2C14.718 2 15.057 2.01 16.124 2.06C17.188 2.109 17.914 2.278 18.551 2.525C19.21 2.779 19.767 3.123 20.323 3.678C20.878 4.234 21.221 4.793 21.476 5.45C21.723 6.087 21.891 6.813 21.941 7.878C21.989 8.944 22.001 9.283 22.001 12C22.001 14.717 21.991 15.056 21.941 16.123C21.892 17.187 21.723 17.912 21.476 18.55C21.222 19.209 20.878 19.766 20.323 20.322C19.767 20.877 19.208 21.22 18.551 21.475C17.914 21.722 17.188 21.89 16.124 21.94C15.057 21.988 14.718 22 12.001 22C9.284 22 8.945 21.99 7.878 21.94C6.814 21.891 6.089 21.722 5.451 21.475C4.793 21.221 4.235 20.877 3.679 20.322C3.123 19.766 2.781 19.207 2.526 18.55C2.278 17.912 2.111 17.187 2.061 16.123C2.013 15.056 2.001 14.717 2.001 12C2.001 9.283 2.011 8.944 2.061 7.878C2.11 6.812 2.278 6.088 2.526 5.45C2.78 4.792 3.123 4.234 3.679 3.678C4.235 3.123 4.793 2.78 5.451 2.525C6.088 2.278 6.813 2.11 7.878 2.06C8.945 2.013 9.284 2 12.001 2Z"/></svg>
+      </a>
+      <a class="site-footer-social" href="https://www.facebook.com/people/AirOps/61587577441617/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.001 2C6.478 2 2.001 6.477 2.001 12C2.001 16.991 5.658 21.128 10.439 21.878V14.891H7.899V12H10.439V9.797C10.439 7.291 11.931 5.906 14.216 5.906C15.31 5.906 16.454 6.102 16.454 6.102V8.562H15.193C13.951 8.562 13.564 9.333 13.564 10.124V12H16.337L15.894 14.891H13.564V21.878C18.344 21.128 22.001 16.991 22.001 12C22.001 6.477 17.524 2 12.001 2Z"/></svg>
+      </a>
+    </div>
+
+    <div class="site-footer-wordmark" role="img" aria-label="AirOps"></div>
+    <div class="site-footer-legal">
+      <a href="https://www.airops.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+      <a href="https://www.airops.com/terms" target="_blank" rel="noopener">Terms</a>
+      <a href="mailto:info@airops.com">Contact</a>
+    </div>
   </div>
-  <div class="footer-wordmark" role="img" aria-label="AirOps"></div>
 </footer>
 
 <script src="agentation-bundle.js" defer></script>
